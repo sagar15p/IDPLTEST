@@ -16,7 +16,9 @@
     "@sap/cds-dk": "^7"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "build": "cds build --production && mbt build -t gen --mtar mta.tar",
+    "deploy": "cf deploy gen/mta.tar"
   },
   "cds": {
     "requires": {
