@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Employee Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>EmployeeID</th>
+                <th>Name</th>
+                <th>DateOfBirth</th>
+                <th>Gender</th>
+                <th>Marital Status</th>
+                <th>Address</th>
+                <th>PhoneNumber</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="employeeTableBody">
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/odata/v4/Employee')
+                .then(response => response.json())
+                .then(data => {
+                    const employees = data.value;
+                    const tableBody = document.getElementById('employeeTableBody');
+                    employees.forEach(employee => {
+                        debugger;
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${employee.EmployeeID}</td>
+                            <td>${employee.Name}</td>
+                            <td>${employee.DateOfBirth}</td>
+                            <td>${employee.Gender}</td>
+                            <td>${employee.MaritalStatus}</td>
+                            <td>${employee.Address}</td>
+                            <td>${employee.PhoneNumber}</td>
+                            <td>${employee.Email}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+
+</html>
