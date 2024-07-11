@@ -17,8 +17,8 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "build": "cds build --production && mbt build -t gen --mtar mta.tar",
-    "deploy": "cf deploy gen/mta.tar"
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
   "cds": {
     "requires": {
