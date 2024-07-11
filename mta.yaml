@@ -52,7 +52,7 @@ resources:
     parameters:
       config:
         tenant-mode: dedicated
-        xsappname: testing_cicd-${org}-${space}
+        xsappname: testing_cicd-initium_digital-${space}
       path: ./xs-security.json
       service: xsuaa
       service-plan: application
